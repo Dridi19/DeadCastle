@@ -1,14 +1,14 @@
 const utils = {
   withGrid(n) {
-    return n * 50;
+    return n * 32;
   },
   asGridCoord(x,y) {
-    return `${x*50},${y*50}`
+    return `${x*32},${y*32}`
   },
   nextPosition(initialX, initialY, direction) {
     let x = initialX;
     let y = initialY;
-    const size = 16;
+    const size = 32;
     if (direction === "left") { 
       x -= size;
     } else if (direction === "right") {
