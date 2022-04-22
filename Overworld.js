@@ -69,14 +69,12 @@ class Overworld {
   this.checkforattack();
   this.checkforkeys();
   this.startGameLoop();
-
   this.map.startCutscene([
    // { who: "hero", type: "walk",  direction: "right" },
    // { who: "nurse", type: "walk",  direction: "left" },
    // { who: "nurse", type: "walk",  direction: "left" },
    // { who: "nurse", type: "stand",  direction: "left", time: 800 },
     //{ type: "textmessage",  text: "left"},
-    
   ])
 
  }

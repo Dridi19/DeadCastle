@@ -128,16 +128,17 @@ class OverworldMap {
           if (object.ismonster) {
             var y = object.y - nextCoords.y
             var x =object.x - nextCoords.x
-            return (  x>=-32 && x<=32 && y>=-32 && y<=32  )
+            return (  x>=-20 && x<=20 && y>=-20 && y<=20  )
             
           }
          
         });
         if (match) {
           console.log(this.gameObjects[match.id])
-          const newobjcoords =utils.nextPosition(this.gameObjects[match.id].x,this.gameObjects[match.id].y, this.gameObjects[match.id].direction);
+          const newobjcoords =utils.nextPosition(this.gameObjects[match.id].x,this.gameObjects[match.id].y, "right");
           this.removeWall(this.gameObjects[match.id].x,this.gameObjects[match.id].y)
-          this.removeWall(newobjcoords.x,newobjcoords.y)
+          this.removeWall(newobjcoords.x+32,newobjcoords.y)
+          this.removeWall(newobjcoords.x-32,newobjcoords.y)
           delete this.gameObjects[match.id]
        
         }
