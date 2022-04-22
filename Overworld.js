@@ -8,49 +8,76 @@ class Overworld {
  
   startGameLoop() {
     const step = () => {
- 
-     //Clear off the canvas
-     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
- 
-      /////// camera person
-      const cameraperson = this.map.gameObjects.hero;
+      //Clear off the canvas
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+      //Establish the camera person
+      const cameraPerson = this.map.gameObjects.hero;
 
-     //Draw Lower layer
-     this.map.drawLowerImage(this.ctx, cameraperson);
-     //Draw Upper layer
-
-     //drawobject
-     Object.values(this.map.gameObjects).forEach(object => {
-      object.update({
-        arrow: this.directionInput.direction,
-        map: this.map
+      //Update all objects
+      Object.values(this.map.gameObjects).forEach(object => {
+        object.update({
+          arrow: this.directionInput.direction,
+          map: this.map,
+        })
       })
-      object.sprite.draw(this.ctx,cameraperson);
-    })
-     
-    
- 
- 
+
+      //Draw Lower layer
+      this.map.drawLowerImage(this.ctx, cameraPerson);
+
+      //Draw Game Objects
+      Object.values(this.map.gameObjects).sort((a,b) => {
+        return a.y - b.y;
+      }).forEach(object => {
+        object.sprite.draw(this.ctx, cameraPerson);
+      })
+      
       requestAnimationFrame(() => {
-       step();   
+        step();   
       })
     }
     step();
-  }
- 
-  init() {
-    //mainroom
-    this.map = new OverworldMap(window.OverworldMaps.first_map);
-    console.log(this.map.walls);
-    this.map.mountObjects();
-    this.directionInput = new DirectionInput();
-    this.directionInput.init();
-  
-    this.startGameLoop();
-   
- 
- 
-  }
- 
  }
+ bindActionInput() {
+  new KeyPressListener("Enter", () => {
+    //Is there a person here to talk to?
+    this.map.checkForActionCutscene()  
+  })}
+  checkforattack() {
+    new KeyPressListener("Space", () => {
+      
+      //Is there a person here to talk to?
+      this.map.attack()  
+      
+    })}
+  checkforkeys(){
+    new KeyPressListener("KeyF", () => {
+      
+      //Is there a person here to talk to?
+      this.map.keychecker()  
+      
+    })
+  }
+
+ init() {
+  this.map = new OverworldMap(window.OverworldMaps.first_map);
+  this.map.mountObjects();
+
+  this.directionInput = new DirectionInput();
+  this.directionInput.init();
+  this.bindActionInput();
+  this.checkforattack();
+  this.checkforkeys();
+  this.startGameLoop();
+
+  this.map.startCutscene([
+   // { who: "hero", type: "walk",  direction: "right" },
+   // { who: "nurse", type: "walk",  direction: "left" },
+   // { who: "nurse", type: "walk",  direction: "left" },
+   // { who: "nurse", type: "stand",  direction: "left", time: 800 },
+    //{ type: "textmessage",  text: "left"},
+    
+  ])
+
+ }
+}
