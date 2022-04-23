@@ -10,6 +10,7 @@ class OverworldMap {
     this.check = true;
     this.isCutscenePlaying = false;
     this.talking = config.talking || [];
+    this.takingdmg = false;
 
   }
 
@@ -17,9 +18,23 @@ class OverworldMap {
     ctx.drawImage(this.lowerImage, utils.withGrid(6)- cameraperson.x, utils.withGrid(4)- cameraperson.y)
   }
   stairs(){
-    this.gameObjects["hero"].x = utils.withGrid(2)
+    this.removeWall(this.gameObjects["hero"].x,this.gameObjects["hero"].y)
+    this.gameObjects["hero"].x = utils.withGrid(3)
     this.gameObjects["hero"].y = utils.withGrid(9)
     
+    this.trap()
+    
+  }
+  trap(){
+          this.hp-=150;
+          document.getElementById("hp").innerHTML = this.hp + `HP <img src="images/touse/heart.png" alt="">`;
+          if (this.hp <= 0){
+            this.hp = 0
+            this.lose()
+            this.dridi()}
+
+    
+   
   }
   isSpaceTaken(currentX, currentY, direction) {
     const {x,y} = utils.nextPosition(currentX, currentY, direction);
@@ -29,6 +44,12 @@ class OverworldMap {
     };
     if(`${x},${y}` === `${3*32},${3*32}`){
       this.stairs()
+      
+    }
+    if(`${x},${y}` === `${2*32},${9*32}`){
+      this.removeWall(this.gameObjects["hero"].x,this.gameObjects["hero"].y)
+      this.gameObjects["hero"].x = utils.withGrid(5)
+    this.gameObjects["hero"].y = utils.withGrid(4)
       
     }
     this.checkifmonsterthere();
@@ -137,8 +158,8 @@ class OverworldMap {
           console.log(this.gameObjects[match.id])
           const newobjcoords =utils.nextPosition(this.gameObjects[match.id].x,this.gameObjects[match.id].y, "right");
           this.removeWall(this.gameObjects[match.id].x,this.gameObjects[match.id].y)
-          this.removeWall(newobjcoords.x+32,newobjcoords.y)
-          this.removeWall(newobjcoords.x-32,newobjcoords.y)
+          this.removeWall(newobjcoords.x,newobjcoords.y)
+          this.removeWall(this.gameObjects[match.id].x+32,this.gameObjects[match.id].y)
           delete this.gameObjects[match.id]
        
         }
@@ -370,11 +391,9 @@ first_map: {
       behaviorLoop: [
         { type: "walk",  direction: "left", time: 800 },
         { type: "walk",  direction: "left", time: 800 },
-        { type: "walk",  direction: "left", time: 800 },
         { type: "walk",  direction: "left", time: 1200 },
         { type: "stand",  direction: "right", time: 1200 },
         { type: "walk",  direction: "right", time: 1200 },
-        { type: "walk",  direction: "right", time: 800 },
         { type: "walk",  direction: "right", time: 800 },
         { type: "walk",  direction: "right", time: 800 },
       ]
