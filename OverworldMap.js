@@ -147,22 +147,25 @@ class OverworldMap {
         delete this.gameObjects.attack
         const match = Object.values(this.gameObjects).find(object => {
           if (object.ismonster) {
-            var y = object.y - nextCoords.y
-            var x =object.x - nextCoords.x
-            return (  x>=-20 && x<=20 && y>=-20 && y<=20  )
+            const y = object.y - nextCoords.y
+            const x =object.x - nextCoords.x
+            if (  x>=-20 && x<=20 && y>=-20 && y<=20  ){
+              
+              const newobjcoords =utils.nextPosition(object.x-x,object.y-y, "right");
+              this.removeWall(object.x,object.y)
+              this.removeWall(newobjcoords.x,newobjcoords.y)
+              this.removeWall(newobjcoords.x+32,newobjcoords.y)
+              this.removeWall(object.x,object.y)
+              return true
+           
+            }
             
           }
+          
          
         });
-        if (match) {
-          console.log(this.gameObjects[match.id])
-          const newobjcoords =utils.nextPosition(this.gameObjects[match.id].x,this.gameObjects[match.id].y, "right");
-          this.removeWall(this.gameObjects[match.id].x,this.gameObjects[match.id].y)
-          this.removeWall(newobjcoords.x,newobjcoords.y)
-          this.removeWall(newobjcoords.x+32,newobjcoords.y)
-          this.removeWall(this.gameObjects[match.id].x+32,this.gameObjects[match.id].y)
+        if(match){
           delete this.gameObjects[match.id]
-       
         }
       }, 500);
     
