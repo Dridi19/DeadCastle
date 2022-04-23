@@ -6,10 +6,10 @@ class Person extends GameObject {
     this.isPlayerControlled = config.isPlayerControlled || false;
 
     this.directionUpdate = {
-      "up": ["y", -2],
-      "down": ["y", 2],
-      "left": ["x", -2],
-      "right": ["x", 2],
+      "up": ["y", -1],
+      "down": ["y", 1],
+      "left": ["x", -1],
+      "right": ["x", 1],
     }
   }
 
@@ -70,7 +70,7 @@ class Person extends GameObject {
   updatePosition() {
       const [property, change] = this.directionUpdate[this.direction];
       this[property] += change;
-      this.movingProgressRemaining -= 2;
+      this.movingProgressRemaining -= 1;
 
       if (this.movingProgressRemaining === 0) {
         //We finished the walk!
