@@ -159,6 +159,7 @@ class OverworldMap {
           const newobjcoords =utils.nextPosition(this.gameObjects[match.id].x,this.gameObjects[match.id].y, "right");
           this.removeWall(this.gameObjects[match.id].x,this.gameObjects[match.id].y)
           this.removeWall(newobjcoords.x,newobjcoords.y)
+          this.removeWall(newobjcoords.x+32,newobjcoords.y)
           this.removeWall(this.gameObjects[match.id].x+32,this.gameObjects[match.id].y)
           delete this.gameObjects[match.id]
        
