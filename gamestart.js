@@ -9,3 +9,8 @@ document.addEventListener("keydown", function(event) {
         
     }
  })
+const git = document.getElementById("git")
+git.addEventListener("click",()=>{
+    window.open("https://github.com/Dridi19/site-rpg");
+
+})

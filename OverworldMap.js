@@ -5,8 +5,10 @@ class OverworldMap {
     this.spikes = config.spikes || {};
     this.lowerImage = new Image();
     this.lowerImage.src = config.lowerSrc;
+    this.UpperSrc = new Image();
+    this.UpperSrc.src = config.UpperSrc;
     this.ismonster = config.ismonster || false;
-    this.hp = 1500;
+    this.hp = 300;
     this.check = true;
     this.isCutscenePlaying = false;
     this.talking = config.talking || [];
@@ -17,6 +19,10 @@ class OverworldMap {
   drawLowerImage(ctx, cameraperson) {
     ctx.drawImage(this.lowerImage, utils.withGrid(6)- cameraperson.x, utils.withGrid(4)- cameraperson.y)
   }
+  
+  drawUpperImage(ctx, cameraperson) {
+    ctx.drawImage(this.UpperSrc,0, 0)
+  }
   stairs(){
     this.removeWall(this.gameObjects["hero"].x,this.gameObjects["hero"].y)
     this.gameObjects["hero"].x = utils.withGrid(3)
@@ -26,7 +32,7 @@ class OverworldMap {
     
   }
   trap(){
-          this.hp-=150;
+          this.hp-=80;
           document.getElementById("hp").innerHTML = this.hp + `HP <img src="images/touse/heart.png" alt="">`;
           if (this.hp <= 0){
             this.hp = 0
@@ -102,7 +108,6 @@ class OverworldMap {
       let object = this.gameObjects[key];
       object.id = key;
       //TODO: determine if this object should actually mount
-      console.log(this.gameObjects[key].iskey)
       if(!this.gameObjects[key].iskey){
       object.mount(this);}
 
@@ -149,13 +154,9 @@ class OverworldMap {
           if (object.ismonster) {
             const y = object.y - nextCoords.y
             const x =object.x - nextCoords.x
-            if (  x>=-20 && x<=20 && y>=-20 && y<=20  ){
-              
-              const newobjcoords =utils.nextPosition(object.x-x,object.y-y, "right");
+            if (  x==0 && y==0  ){
               this.removeWall(object.x,object.y)
-              this.removeWall(newobjcoords.x,newobjcoords.y)
-              this.removeWall(newobjcoords.x+32,newobjcoords.y)
-              this.removeWall(object.x,object.y)
+              this.removeWall(object.x-32,object.y)
               return true
            
             }
@@ -167,7 +168,7 @@ class OverworldMap {
         if(match){
           delete this.gameObjects[match.id]
         }
-      }, 500);
+      }, 20);
     
     
     }
@@ -176,8 +177,6 @@ keychecker(){
   const hero = this.gameObjects["hero"];
   const key1 = this.gameObjects["keyFirstroom"] || {};
   const key2 = this.gameObjects["keySecondroom"];
-  console.log(key1.x)
-  console.log(hero.x)
   
   if (`${hero.x},${hero.y}` === `${key1.x},${key1.y}`){
     delete this.gameObjects["keyFirstroom"];
@@ -212,6 +211,7 @@ window.OverworldMaps = {
 
 first_map: {
   lowerSrc: "/images/touse/castel.png",
+  UpperSrc:"/images/touse/upperlevel.png",
   ///game objects
   gameObjects: {
     /// hero
@@ -372,16 +372,14 @@ first_map: {
     }),
     maze_zombie2: new Person({
       ismonster: true,
-      x: utils.withGrid(28),
+      x: utils.withGrid(27),
       y: utils.withGrid(11),
       src: "/images/touse/1.png",
       behaviorLoop: [
         { type: "walk",  direction: "left", time: 1500 },
         { type: "walk",  direction: "left", time: 1500 },
         { type: "walk",  direction: "left", time: 1500 },
-        { type: "walk",  direction: "left", time: 1500 },
         { type: "stand",  direction: "right", time: 1500 },
-        { type: "walk",  direction: "right", time: 1500 },
         { type: "walk",  direction: "right", time: 1500 },
         { type: "walk",  direction: "right", time: 1500 },
         { type: "walk",  direction: "right", time: 1500 },
@@ -853,5 +851,5 @@ spikes:{
 
 }
 },/////first_map ending
-
+//// wait for other maps
 }
