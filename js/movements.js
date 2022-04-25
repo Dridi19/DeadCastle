@@ -1,4 +1,4 @@
-class DirectionInput {
+class Movements {
   constructor() {
     this.heldDirections = [];
 

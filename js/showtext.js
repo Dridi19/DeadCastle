@@ -1,4 +1,4 @@
-class textmessage {
+class showtext {
     constructor({ text, oncomplete }) {
       this.text = text;
       this.onComplete = oncomplete;

@@ -1,4 +1,4 @@
-class Overworld {
+class Gameworld {
   constructor(config) {
     this.element = config.element;
     this.canvas = this.element.querySelector(".game-canvas");
@@ -60,21 +60,16 @@ class Overworld {
   }
 
  init() {
-  this.map = new OverworldMap(window.OverworldMaps.first_map);
+  this.map = new Gamemap(window.Gamemaps.first_map);
   this.map.mountObjects();
 
-  this.directionInput = new DirectionInput();
+  this.directionInput = new Movements();
   this.directionInput.init();
   this.bindActionInput();
   this.checkforattack();
   this.checkforkeys();
   this.startGameLoop();
   this.map.startCutscene([
-   // { who: "hero", type: "walk",  direction: "right" },
-   // { who: "nurse", type: "walk",  direction: "left" },
-   // { who: "nurse", type: "walk",  direction: "left" },
-   // { who: "nurse", type: "stand",  direction: "left", time: 800 },
-    //{ type: "textmessage",  text: "left"},
   ])
 
  }

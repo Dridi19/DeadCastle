@@ -1,4 +1,4 @@
-class Sprite {
+class Draws {
   constructor(config) {
 
     //Set up the image
@@ -53,7 +53,6 @@ class Sprite {
   }
 
   updateAnimationProgress() {
-    //Downtick frame progress
     if (this.animationFrameProgress > 0) {
       this.animationFrameProgress -= 1;
       return;

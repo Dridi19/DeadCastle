@@ -1,4 +1,4 @@
-class OverworldMap {
+class Gamemap {
   constructor(config) {
     this.gameObjects = config.gameObjects;
     this.walls = config.walls || {};
@@ -118,7 +118,7 @@ class OverworldMap {
     this.isCutscenePlaying = true;
 
     for (let i=0; i<events.length; i++) {
-      const eventHandler = new OverworldEvent({
+      const eventHandler = new Events({
         event: events[i],
         map: this,
       })
@@ -206,7 +206,7 @@ keychecker(){
   }
 }
 
-window.OverworldMaps = {
+window.Gamemaps = {
   
 
 first_map: {

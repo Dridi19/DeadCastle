@@ -1,4 +1,4 @@
-class OverworldEvent {
+class Events {
   constructor({ map, event}) {
     this.map = map;
     this.event = event;
@@ -46,7 +46,7 @@ class OverworldEvent {
   }
 
   textmessage(resolve){
-    const message = new textmessage({
+    const message = new showtext({
       text: this.event.text,
       oncomplete:() => resolve()
     })
