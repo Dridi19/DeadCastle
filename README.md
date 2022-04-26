@@ -1,1 +1,1 @@
-![DeadCastel](images/touse/logo.png)
+![DeadCastel](images/logo.png)
