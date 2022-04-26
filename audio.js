@@ -12,3 +12,6 @@ function play(){
         audio.pause()
     }
 }
+function audioplay(){
+    audio.play();
+}
