@@ -1,4 +1,4 @@
-![DeadCastel](images/touse/logo.png)
+![DeadCastel](images/logo.png)
 ### <p align="center"> DeadCastle • <a href="https://deadcastle.netlify.app" > deadcastle.netlify.app </a> </p>
 
 ### 1. Description
