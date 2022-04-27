@@ -12,23 +12,23 @@ to save the queen, the prince must kill different monsters, pass different obsta
 Our school Hectic gave as a Front-end project for 2 weeks to make a javascript game.
 
 ### 3. Team and Task sharing 
-[Dridi Mohamed Amine](https://github.com/dridi19): functions (kill monster, take damage from a monster or while walking on spikes,change the animation while walking, display of Hp, picking up keys, opening door,speak with npcs)
-[Gouja]:  assets\ style of the dialogues\ the ideas of the project (the improvements and the course of the game)\the name of the game;
-[Rogier]: contribute to assets and especially the maps
-[Rekik]: occupied to make the walls impassable and to put a limit where the Hero can navigate / creation and resizing of characters
-[Ghazal]:  logo \ the interface of the beginning and the end of the game \ background of the page \ assets \ map
-[Benmansour]: css interface of the project above the map
+[Dridi Mohamed Amine](https://github.com/dridi19): functions (kill monster, take damage from a monster or while walking on spikes,change the animation while walking, display of Hp, picking up keys, opening door,speak with npcs)  <br>
+[Gouja]:  assets\ style of the dialogues\ the ideas of the project (the improvements and the course of the game)\the name of the game; <br>
+[Rogier]: contribute to assets and especially the maps <br>
+[Rekik]: occupied to make the walls impassable and to put a limit where the Hero can navigate / creation and resizing of characters <br>
+[Ghazal]:  logo \ the interface of the beginning and the end of the game \ background of the page \ assets \ map <br>
+[Benmansour]: css interface of the project above the map <br>
 
 ### 3. Possible improvements:
-battle sounds.
-A celebration of victory.
-A multiple choice of avatars.
-A source of energy that will make the prince heal.
+battle sounds. <br>
+A celebration of victory. <br>
+A multiple choice of avatars. <br>
+A source of energy that will make the prince heal. <br>
 
-### 4. What we learned:
-Coding improvements
-Using classes
-Object manipulation
-Using event listeners
-Create some clean code.
-The method and how to create a dungeon crawler type game
+### 4. What we learned: 
+Coding improvements <br>
+Using classes  <br>
+Object manipulation  <br>
+Using event listeners  <br>
+Create some clean code.  <br>
+The method and how to create a dungeon crawler type game  <br>
